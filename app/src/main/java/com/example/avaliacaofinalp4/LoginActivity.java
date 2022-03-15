@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
 
@@ -70,7 +69,7 @@ public class LoginActivity extends AppCompatActivity {
                 for (User u : users) {
                     System.out.println(u);
 
-                    if(u.getEmail().equals(email)){
+                    if(u.getEmail().equals(email) && u.getName().equals(user)){
                         lgn = u;
                     }
 
@@ -88,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }else{
-                    Toast.makeText(LoginActivity.this, "Email não encontrado! Registre-se primeiro", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginActivity.this, "Email e Nome não coincidem", Toast.LENGTH_LONG).show();
                 }
        }
 

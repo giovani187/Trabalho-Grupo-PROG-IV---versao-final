@@ -54,8 +54,6 @@ public class ChatActivity extends AppCompatActivity {
         USER_ID_API  = preferences.getInt("USER_ID", -1);
         System.out.println("USER LOGIN:  " + USER_ID_API);
 
-        getSupportActionBar().setTitle("Chat");
-
         rv = findViewById(R.id.recycler_chat);
         editChat = findViewById(R.id.edit_chat);
         Button btnChat = findViewById(R.id.btn_chat);
