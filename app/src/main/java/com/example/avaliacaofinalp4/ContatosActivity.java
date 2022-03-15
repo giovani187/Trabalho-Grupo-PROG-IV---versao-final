@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -19,6 +20,7 @@ import retrofit2.Retrofit;
 public class ContatosActivity extends AppCompatActivity {
 
     TextView contatos;
+    ImageView imageView;
     Service service;
 
     @Override
@@ -26,9 +28,17 @@ public class ContatosActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_contatos);
         contatos = findViewById(R.id.tv_contatos);
+        imageView = findViewById(R.id.contatos_voltar);
         contatos.setMovementMethod(new ScrollingMovementMethod());
 
         service = RetrofitController.getInstance().create(Service.class);
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void onResume(){

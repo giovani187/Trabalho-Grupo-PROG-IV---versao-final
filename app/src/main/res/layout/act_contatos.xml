@@ -6,17 +6,35 @@
     android:background="@color/colorPrimary"
     android:layout_height="match_parent">
 
-    <TextView
-        android:textSize="50dp"
-        android:textStyle="bold"
-        android:textColor="@color/gray"
-        android:textAlignment="center"
-        android:layout_width="match_parent"
-        android:text="CONTATOS"
-        android:layout_marginBottom="5dp"
+    <RelativeLayout
         android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </TextView>
+
+        <ImageView
+            android:id="@+id/contatos_voltar"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="18dp"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/voltar" />
+
+        <TextView
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:textColor="@color/gray"
+            android:textAlignment="center"
+            android:layout_width="match_parent"
+            android:text="CONTATOS"
+            android:layout_marginBottom="5dp"
+            android:layout_height="wrap_content">
+        </TextView>
+
+    </RelativeLayout>
+
 
     <TextView
         android:textSize="22dp"
@@ -28,5 +46,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical" />
+
 
 </LinearLayout>

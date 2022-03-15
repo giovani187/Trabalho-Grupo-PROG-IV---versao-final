@@ -6,11 +6,13 @@ import android.content.Context;
         import android.content.SharedPreferences;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
-        import android.util.Log;
+import android.text.method.ScrollingMovementMethod;
+import android.util.Log;
         import android.view.View;
         import android.widget.Button;
         import android.widget.EditText;
-        import android.widget.Toast;
+import android.widget.ImageView;
+import android.widget.Toast;
 
         import java.util.List;
 
@@ -42,6 +44,14 @@ public class RegistryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clickEnter();
+            }
+        });
+
+        ImageView imageView = findViewById(R.id.registro_voltar);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
