@@ -1,6 +1,7 @@
 package com.example.avaliacaofinalp4;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -69,8 +70,16 @@ public class ChatActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-
         service = RetrofitController.getInstance().create(Service.class);
+
+        Button contatos = findViewById(R.id.btn_contatos);
+        contatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChatActivity.this.getApplicationContext(), ContatosActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
