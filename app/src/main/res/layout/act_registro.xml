@@ -34,7 +34,7 @@
         android:layout_marginEnd="36dp"
         android:paddingStart="5dp"
         android:paddingEnd="5dp"
-        android:hint="Nome do usuário"
+        android:hint="Nome do Cliente"
         android:background="@drawable/bg_edittext_rounded"
         android:ems="10"
         />
