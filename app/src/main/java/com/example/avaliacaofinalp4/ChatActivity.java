@@ -65,21 +65,8 @@ public class ChatActivity extends AppCompatActivity {
         rv.setLayoutManager(new LinearLayoutManager(this));
         rv.setAdapter(adapter);
 
-        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-        interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-        OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(interceptor)
-                .build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://app-chat-android2.herokuapp.com/")
-                //.client(new OkHttpClient.Builder().build())
-                //.addConverterFactory(JacksonConverterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(client)
-                .build();
-
-        service = retrofit.create(Service.class);
+        service = RetrofitController.getInstance().create(Service.class);
 
     }
 

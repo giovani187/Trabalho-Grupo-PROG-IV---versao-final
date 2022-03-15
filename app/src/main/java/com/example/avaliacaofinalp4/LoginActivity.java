@@ -1,23 +1,28 @@
 package com.example.avaliacaofinalp4;
 
-import android.content.Intent;
-import android.support.annotation.NonNull;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText mEditEmail;
-    private EditText mEditPassword;
+    private EditText mEditUser;
     private Button mBtnEnter;
-    private TextView mTxtAccount;
+
+    private Service service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,40 +30,69 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.act_login);
 
         mEditEmail = findViewById(R.id.edit_email);
-        mEditPassword = findViewById(R.id.edit_password);
+        mEditUser = findViewById(R.id.edit_user_name);
         mBtnEnter = findViewById(R.id.btn_enter);
-        mTxtAccount = findViewById(R.id.txt_account);
+
+        service = RetrofitController.getInstance().create(Service.class);
 
         mBtnEnter.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                String email = mEditEmail.getText().toString();
-                String password = mEditPassword.getText().toString();
+            public void onClick(View view) {
+                clickEnter();
+            }
+        });
 
-                Log.i("Teste", email);
-                Log.i("Teste", password);
 
-                if (email == null || email.isEmpty() || password == null || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "Nome, senha e email devem ser preenchidos", Toast.LENGTH_SHORT).show();
-                    return;
+    }
+
+
+    public void clickEnter(){
+        String email = mEditEmail.getText().toString();
+        String user = mEditUser.getText().toString();
+
+        Log.i("Tentando Logar com", email);
+
+        if (email == null || email.isEmpty() || user == null || user.isEmpty()) {
+            Toast.makeText(LoginActivity.this, "Usuário e email devem ser preenchidos", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        service.carregarContatos().enqueue(new Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                List<User> users = response.body();
+
+                boolean lgn = false;
+
+                for (User u : users) {
+                    System.out.println(u);
+
+                    if(u.getEmail().equals(email)){
+                        lgn = true;
+                    }
+
                 }
 
-                //Log.i("Teste", task.getResult().getUser().getUid());
+                if(lgn){
+                    System.out.println("EMAIL ENCONTRADO !! logando...");
+                }else{
+                    Toast.makeText(LoginActivity.this, "Email não encontrado! Registre-se primeiro", Toast.LENGTH_LONG).show();
+                }
+       }
 
-                //Intent intent = new Intent(LoginActivity.this, MessagesActivity.class);
-
-                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-
-                //startActivity(intent);
-            }
-        });
-
-        mTxtAccount.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                //Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                //startActivity(intent);
+            public void onFailure(Call<List<User>> call, Throwable t) {
+
             }
         });
+
+
+        //Log.i("Teste", task.getResult().getUser().getUid());
+
+        //Intent intent = new Intent(LoginActivity.this, MessagesActivity.class);
+
+        //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        //startActivity(intent);
     }
 }

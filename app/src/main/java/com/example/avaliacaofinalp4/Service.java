@@ -19,4 +19,8 @@ public interface Service {
 
     @POST("chat/enviar")
     Call<ResponseBody> enviarMensagem(@Body MensagemEnviar msg);
+
+
+    @GET("chat/contatos")
+    Call<List<User>> carregarContatos();
 }

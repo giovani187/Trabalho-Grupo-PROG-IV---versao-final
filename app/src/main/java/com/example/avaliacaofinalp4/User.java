@@ -3,75 +3,60 @@ package com.example.avaliacaofinalp4;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class User implements Parcelable {
+public class User {
 
-    private String uuid;
-    private String username;
-    private String profileUrl;
-    private String token;
-    private boolean online;
+
+
+    private int id;
+    private String name;
+    private String email;
+    private String gcmtoken;
+
 
     public User() {
     }
 
-    public User(String uuid, String username, String profileUrl) {
-        this.uuid = uuid;
-        this.username = username;
-        this.profileUrl = profileUrl;
+
+    public int getId() {
+        return id;
     }
 
-    protected User(Parcel in) {
-        uuid = in.readString();
-        username = in.readString();
-        profileUrl = in.readString();
-        token = in.readString();
-        online = in.readInt() == 1;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public static final Creator<User> CREATOR = new Creator<User>() {
-        @Override
-        public User createFromParcel(Parcel in) {
-            return new User(in);
-        }
-
-        @Override
-        public User[] newArray(int size) {
-            return new User[size];
-        }
-    };
-
-    public String getUuid() {
-        return uuid;
+    public String getName() {
+        return name;
     }
 
-    public String getUsername() {
-        return username;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getProfileUrl() {
-        return profileUrl;
+    public String getEmail() {
+        return email;
     }
 
-    public String getToken() {
-        return token;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public boolean isOnline() {
-        return online;
+    public String getGcmtoken() {
+        return gcmtoken;
     }
+
+    public void setGcmtoken(String gcmtoken){
+        this.gcmtoken = gcmtoken;
+    }
+
 
     @Override
-    public int describeContents() {
-        return 0;
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", gcmtoken='" + gcmtoken + '\'' +
+                '}';
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(uuid);
-        dest.writeString(username);
-        dest.writeString(profileUrl);
-        dest.writeString(token);
-        dest.writeInt(online ? 1 : 0);
-    }
-
 }
