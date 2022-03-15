@@ -1,6 +1,9 @@
 package com.example.avaliacaofinalp4;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -62,19 +65,28 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                 List<User> users = response.body();
 
-                boolean lgn = false;
+                User lgn = null;
 
                 for (User u : users) {
                     System.out.println(u);
 
                     if(u.getEmail().equals(email)){
-                        lgn = true;
+                        lgn = u;
                     }
 
                 }
 
-                if(lgn){
+                if(lgn != null){
                     System.out.println("EMAIL ENCONTRADO !! logando...");
+
+                    SharedPreferences preferences = getSharedPreferences("AUTHENTICATION", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putInt("USER_ID", lgn.getId());
+                    editor.apply();
+
+                    Intent intent = new Intent(LoginActivity.this.getApplicationContext(), ChatActivity.class);
+                    startActivity(intent);
+
                 }else{
                     Toast.makeText(LoginActivity.this, "Email não encontrado! Registre-se primeiro", Toast.LENGTH_LONG).show();
                 }

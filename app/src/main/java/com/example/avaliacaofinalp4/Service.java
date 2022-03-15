@@ -23,4 +23,10 @@ public interface Service {
 
     @GET("chat/contatos")
     Call<List<User>> carregarContatos();
+
+
+    @POST("chat/registrar")
+    Call<User> registrarUsuario(@Body NewUser newUser);
+
+
 }

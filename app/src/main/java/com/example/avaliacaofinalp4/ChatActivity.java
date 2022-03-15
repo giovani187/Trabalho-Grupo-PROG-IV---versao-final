@@ -1,5 +1,7 @@
 package com.example.avaliacaofinalp4;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -47,6 +49,10 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.act_chat);
 
+        SharedPreferences preferences = getSharedPreferences("AUTHENTICATION", Context.MODE_PRIVATE);
+
+        USER_ID_API  = preferences.getInt("USER_ID", -1);
+        System.out.println("USER LOGIN:  " + USER_ID_API);
 
         getSupportActionBar().setTitle("Chat");
 
