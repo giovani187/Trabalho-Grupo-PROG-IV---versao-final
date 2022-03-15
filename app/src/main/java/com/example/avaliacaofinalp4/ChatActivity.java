@@ -76,7 +76,7 @@ public class ChatActivity extends AppCompatActivity {
         contatos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ChatActivity.this.getApplicationContext(), ContatosActivity.class);
+                Intent intent = new Intent(ChatActivity.this, ContatosActivity.class);
                 startActivity(intent);
             }
         });

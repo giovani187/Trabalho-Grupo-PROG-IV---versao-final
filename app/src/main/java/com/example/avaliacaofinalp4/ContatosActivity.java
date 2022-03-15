@@ -42,7 +42,7 @@ public class ContatosActivity extends AppCompatActivity {
                 if(users != null){
 
                     for (User u: users) {
-                        contatos.append(u.toString() + "\n");
+                        contatos.append(u.getName() + " #ID: " + u.getId() + "\n" + u.getEmail() + "\n............................\n");
                     }
 
                 }
